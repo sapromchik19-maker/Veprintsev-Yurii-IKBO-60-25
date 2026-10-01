@@ -85,26 +85,12 @@ nano comments
 #!/bin/bash
 
 for file in *.c *.js *.py; do
-    [ -e "$file" ] || continue
-
     first_line=$(head -n 1 "$file")
-
-    case "$file" in
-        *.c|*.js)
-            if echo "$first_line" | grep -qE '^[[:space:]]*(//|/\*)'; then
-                echo "$file: comment found"
-            else
-                echo "$file: no comment"
-            fi
-            ;;
-        *.py)
-            if echo "$first_line" | grep -qE '^[[:space:]]*#'; then
-                echo "$file: comment found"
-            else
-                echo "$file: no comment"
-            fi
-            ;;
-    esac
+    if echo "$first_line" | grep -qE '^[[:space:]]*(//|/\*|#)'; then
+        echo "$file: comment found"
+        else           
+             echo "$file: no comment"
+    fi
 done
 
 nano test.c
@@ -125,6 +111,56 @@ print("hello")
 <img width="435" height="224" alt="image" src="https://github.com/user-attachments/assets/b87b1bf9-5f2b-4846-bb76-f1304d127823" />
 
 ## Задание 7
+```
+nano duplicate
+
+#!/bin/bash
+
+find "$1" -type f -exec md5sum {} + | sort | awk '
+{
+    hash=$1
+    file=$2
+
+    if (hash == prev_hash) {
+        if (count == 1) {
+            print prev_file
+        }
+        print file
+        count++
+    } else {
+        prev_hash=hash
+        prev_file=file
+        count=1
+    }
+}
+'
+
+echo "hello" > file1.txt
+cp file1.txt file2.txt
+echo "world" > file3.txt
+cp file1.txt file4.txt
+chmod +x duplicate
+./
+```
+
+## Результат
+<img width="518" height="235" alt="image" src="https://github.com/user-attachments/assets/b438cf14-275c-4b96-b22e-e6a9d9009725" />
+
+## Задание 8
+```
+
+```
+
+## Результат
+
+## Задание 9
+```
+
+```
+
+## Результат
+
+## Задание 10
 ```
 
 ```
