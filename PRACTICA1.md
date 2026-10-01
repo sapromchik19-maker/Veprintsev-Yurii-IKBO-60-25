@@ -148,21 +148,59 @@ chmod +x duplicate
 
 ## Задание 8
 ```
+nano archive
+
+#!/bin/bash
+
+find "$1" -type f -name "*.$2" -print0 | tar --null -T - -cf archive.tar
+
+echo "one" > a.txt
+echo "two" > b.txt
+echo "three" > c.c
+
+chmod +x archive
+./archive . txt
+tar -tf archive.tar
 
 ```
 
 ## Результат
+<img width="445" height="434" alt="image" src="https://github.com/user-attachments/assets/458f4150-e26c-4267-a35c-3b357ecc519b" />
 
 ## Задание 9
 ```
+nano space
+#!/bin/bash
 
+sed 's/    /\t/g' "$1" > "$2"
+
+nano input.txt
+
+1       2       3
+1  1    1
+
+chmod +x space
+./space input.txt output.txt
+cat output.txt
+
+cat -T output.txt
 ```
 
 ## Результат
+<img width="390" height="167" alt="image" src="https://github.com/user-attachments/assets/aa57e72d-78e1-471d-a976-c8d60d6ac88f" />
 
 ## Задание 10
 ```
+nano empty_file
+#!/bin/bash
 
+find "$1" -type f -empty -name "*.txt"
+chmod +x empty_file
+touch empty1.txt
+touch empty2.txt
+echo "one" > 1.txt
+./empty_file . txt
 ```
 
 ## Результат
+<img width="369" height="232" alt="image" src="https://github.com/user-attachments/assets/874f09e0-4877-431d-a590-7c42413e2084" />
