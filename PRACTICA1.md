@@ -23,7 +23,7 @@ grep -o '^[^:]*' /etc/passwd | sort
 ```
 nano banner
 
-!/bin/bash
+#!/bin/bash
 
 text="$1"
 length=${#text}
