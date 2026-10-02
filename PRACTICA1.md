@@ -140,7 +140,7 @@ cp file1.txt file2.txt
 echo "world" > file3.txt
 cp file1.txt file4.txt
 chmod +x duplicate
-./
+./duplicate .
 ```
 
 ## Результат
